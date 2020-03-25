@@ -35,6 +35,7 @@ def get_rank_info(rank: int) -> None:
         return
 
     statewise = DATA["statewise"]
+    statewise.sort(key=lambda x: int(x['active']), reverse=True)
     if rank == -1:
         for r in range(len(statewise)):
             print_state_data(statewise[r], rank=r)
