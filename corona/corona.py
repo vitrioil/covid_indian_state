@@ -2,7 +2,7 @@
 import argparse
 from argparse import ArgumentParser
 
-from data import download_if_not_updated
+from data import download_if_not_updated, delete_cache
 
 
 DATA = download_if_not_updated()
@@ -49,6 +49,8 @@ def get_rank_info(rank: int) -> None:
 
 
 def main(args: argparse.Namespace) -> None:
+    if args.delete:
+        delete_cache()
     if not args.state and not args.rank:
         get_rank_info(-1)
     get_state_info(args.state)
@@ -59,6 +61,8 @@ if __name__ == "__main__":
 
     parser.add_argument("--rank", type=int, help="Rank of state in terms of cases")
     parser.add_argument("--state", type=str, help="Name of the state (Total for all states combined)")
+
+    parser.add_argument("--delete", help="Delete Cache", action="store_true")
 
     args = parser.parse_args()
 

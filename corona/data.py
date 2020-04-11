@@ -40,3 +40,6 @@ def download_if_not_updated(url="https://api.covid19india.org/data.json",
 
     return data
 
+def delete_cache(cache_file=Path("/tmp/corona_india_data/corona.pkl")):
+    cache_file.unlink()
+    
